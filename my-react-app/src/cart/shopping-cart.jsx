@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import react, { useState, useEffect } from "react";
 import "./shopping-cart.css";
 const ShoppingCart = () => {
   const [addedToCart, setAddedToCart] = useState([]);
@@ -11,17 +11,32 @@ const ShoppingCart = () => {
     { id: 6, name: "Webcam", price: 3000 },
   ];
   const addToCart = (product) => {
-    console.log("Data:", product);
+    // const findItems = addedToCart.find((item) => item.id === product.id);
+    let findItems = false;
+    for (let i = 0; i < addedToCart.length; i++) {
+      if (product.id === addedToCart[i].id) {
+        findItems = true;
+      }
+    }
+
+    if (findItems === false) {
+      console.log("Hello world");
+
+      setAddedToCart([...addedToCart, product]);
+    }
   };
+  useEffect(() => {
+    console.log("Cart:", addedToCart);
+  }, [addedToCart]);
   return (
     <div className="main__parent">
       <h1>Products</h1>
       <div className="parent">
-        {shoppingItemData.map((item, index) => {
+        {shoppingItemData?.map((item, index) => {
           return (
             <div className="parent__item">
-              <div className="heading">{item.name}</div>
-              <div className="pricing">{item.price}</div>
+              <div className="heading">{item?.name}</div>
+              <div className="pricing">{item?.price}</div>
               <button
                 className="button__style"
                 onClick={() => {
@@ -34,9 +49,29 @@ const ShoppingCart = () => {
           );
         })}
       </div>
-      <div className="cart__item">
-        <h1>Cart {addedToCart.length}</h1>
-        {addedToCart.length == 0 ? <div>Cart is empty</div> : <div></div>}
+      <div className="cart">
+        <h1>Cart {addedToCart?.length}</h1>
+        {addedToCart?.length == 0 ? (
+          <div>Cart is empty</div>
+        ) : (
+          <div className="cart__item">
+            {
+              // addToCart.map((item,index)=>{
+              //   return(
+              //   <strong>{item.name}</strong>
+              //   <p>{item.price}</p>)
+              // })
+              addedToCart?.map((item, index) => {
+                return (
+                  <div>
+                    <strong>{item.name}</strong>
+                    <p>{item.price}</p>
+                  </div>
+                );
+              })
+            }
+          </div>
+        )}
       </div>
     </div>
   );
