@@ -69,6 +69,23 @@ const ShoppingCart = () => {
                       <strong>{item.name}</strong>
                       <p>{item.price}</p>
                     </div>
+                    <div className="cart__quantity-controls">
+                      <button
+                        className="cart__quantity-button"
+                        type="button"
+                        aria-label={`Decrease ${item.name} quantity`}
+                      >
+                        −
+                      </button>
+                      <span className="cart__quantity-value">1</span>
+                      <button
+                        className="cart__quantity-button"
+                        type="button"
+                        aria-label={`Increase ${item.name} quantity`}
+                      >
+                        +
+                      </button>
+                    </div>
                     <button
                       className="cart__remove-button"
                       type="button"

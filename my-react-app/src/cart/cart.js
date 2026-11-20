@@ -17,3 +17,12 @@ const fun1 = () => {
 
 let ans = fun1();
 console.log("Ans:" + ans);
+
+let arr = [
+  { id: 1, name: "sai" },
+  { id: 2, name: "ram" },
+];
+// let arr=[1,2,3,4,5]
+// const arrData=arr.filter((item)=>item%2!==0);
+const arrData = arr.filter((item) => item.id != 1);
+console.log("Data:", arrData);
