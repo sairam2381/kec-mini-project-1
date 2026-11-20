@@ -25,6 +25,7 @@ const ShoppingCart = () => {
       setAddedToCart([...addedToCart, product]);
     }
   };
+
   useEffect(() => {
     console.log("Cart:", addedToCart);
   }, [addedToCart]);
@@ -63,9 +64,18 @@ const ShoppingCart = () => {
               // })
               addedToCart?.map((item, index) => {
                 return (
-                  <div>
-                    <strong>{item.name}</strong>
-                    <p>{item.price}</p>
+                  <div className="cart__item-row" key={item.id}>
+                    <div className="cart__item-details">
+                      <strong>{item.name}</strong>
+                      <p>{item.price}</p>
+                    </div>
+                    <button
+                      className="cart__remove-button"
+                      type="button"
+                      aria-label={`Remove ${item.name} from cart`}
+                    >
+                      Remove
+                    </button>
                   </div>
                 );
               })
